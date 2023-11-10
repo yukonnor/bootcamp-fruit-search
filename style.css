@@ -1,5 +1,5 @@
 * {
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 :focus {
@@ -7,16 +7,63 @@
 }
 
 body {
-    /* TODO */
-}
-
-input {
-    /* TODO */
+    background: radial-gradient(
+            60.3% 33.42% at 23.4% 63.58%,
+            rgba(255, 115, 249, 0.2) 0%,
+            rgba(99, 3, 255, 0.2) 100%
+        ),
+        radial-gradient(
+            193.42% 81.72% at 92.19% 54.21%,
+            #a7c7ff 0%,
+            #bef7ff 39.06%,
+            #b6b9ff 71.57%,
+            #fcd8ff 100%
+        );
 }
 
 .search-container {
-    /* TODO */
+    width: 60%;
+    min-width: 400px;
+    height: 600px;
+    border-radius: 30px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #fff;
+    /* box-shadow: 0px 4px 35px 0px rgba(0, 0, 0, 0.19); */
+    box-shadow: -10px -10px 15px rgba(149, 149, 149, 0.384), 10px 10px 15px rgba(70, 70, 70, 0.12);
 }
+
+.search-header {
+    margin: auto;
+    text-align: center;
+}
+
+.search-box {
+    width: 80%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 20px auto;
+    background: #efefef;
+}
+
+.search-box:hover {
+    background: #e2e2e2;
+}
+
+.fa-magnifying-glass {
+    margin: 12px 0px;
+    margin-left: 12px;
+    margin-right: 6px;
+}
+
+input {
+    border: none;
+    background-color: rgb(0, 0, 0, 0);
+    outline: none;
+    width: 80%;
+}
+
 .search-container input,
 .search-container .suggestions {
     /* TODO */
