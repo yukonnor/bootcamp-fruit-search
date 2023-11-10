@@ -93,15 +93,18 @@ function searchHandler(e) {
     const textInput = e.target;
     let searchText = textInput.value.trim();
     let fruitResults = [];
-    console.log(searchText);
 
     // clear suggestions after each update:
     clearSuggestions();
 
+    // add clear input button if not one already
+    if (!document.querySelector(".fa-circle-xmark")) {
+        createClearInputButton();
+    }
+
     // If input is at least 2 chars create a filtered list of fruit
     if (searchText.length > 1) {
         fruitResults = search(searchText);
-        // console.log(fruitResults);
     }
 
     // If filterFruit has items, show suggestions
@@ -112,7 +115,33 @@ function searchHandler(e) {
 
 function search(searchText) {
     const searchTextLower = searchText.toLowerCase();
-    return fruit.filter((value) => value.toLowerCase().includes(searchTextLower));
+
+    // show results where the search text matches the beginning of the fruit first
+    const leadingResults = fruit.filter(
+        (value) =>
+            value.toLowerCase().includes(searchTextLower) &&
+            value.toLowerCase().indexOf(searchTextLower) === 0
+    );
+    const trailingResults = fruit.filter(
+        (value) =>
+            value.toLowerCase().includes(searchTextLower) &&
+            value.toLowerCase().indexOf(searchTextLower) !== 0
+    );
+
+    return leadingResults.concat(trailingResults);
+}
+
+function createClearInputButton() {
+    const searchBox = document.querySelector(".search-box");
+    const clearButton = document.createElement("i");
+    clearButton.classList.add("fa-regular", "fa-circle-xmark");
+    clearButton.addEventListener("click", () => {
+        input.value = "";
+        clearSuggestions();
+        removeClearInputButtin();
+    });
+
+    searchBox.append(clearButton);
 }
 
 function showSuggestions(results, inputVal) {
@@ -140,10 +169,16 @@ function showSuggestions(results, inputVal) {
 
 function clearSuggestions() {
     // Q: Would a better alternative be to update the suggestion list to remove items that no longer match?
-    // Q: How to make this function return something instead of sideeffects on global var?
+    // Q: How to make this function return something instead of side effects on global var?
     while (suggestions.firstChild) {
         suggestions.removeChild(suggestions.lastChild);
     }
+}
+
+function removeClearInputButtin() {
+    // remove clearinput button
+    const clearButton = document.querySelector(".fa-circle-xmark");
+    clearButton.remove();
 }
 
 function generateResultItemContent(result, inputVal) {
