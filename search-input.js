@@ -94,7 +94,7 @@ function searchHandler(e) {
     let searchText = textInput.value.trim();
     let fruitResults = [];
 
-    // clear suggestions after each update:
+    // clear suggestions after search text is updated
     clearSuggestions();
 
     // add clear input button if not one already
@@ -176,7 +176,6 @@ function clearSuggestions() {
 }
 
 function removeClearInputButtin() {
-    // remove clearinput button
     const clearButton = document.querySelector(".fa-circle-xmark");
     clearButton.remove();
 }
