@@ -187,6 +187,7 @@ function generateResultItemContent(result, inputVal) {
     const inputIndex = resultLowered.indexOf(inputLowered);
     let resultHTML = "";
 
+    // TODO: This will only catch the first instance of the substring. Case: "Elderberry"
     if (inputIndex >= 0) {
         resultHTML =
             result.slice(0, inputIndex) +
